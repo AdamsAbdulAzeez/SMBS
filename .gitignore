@@ -1,0 +1,19 @@
+######################################
+# Visual Studio per-user settings data
+######################################
+*.suo
+*.user
+
+####################
+# Build/Test folders
+####################
+**/.vs/
+**/bin/
+**/obj/
+**/Temp/
+**/NuGet.exe
+**/buildlogs/
+**/Deployment/
+**/packages
+**/launchSettings.json
+**/Debug/

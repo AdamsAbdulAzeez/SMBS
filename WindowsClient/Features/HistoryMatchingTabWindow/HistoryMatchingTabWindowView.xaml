@@ -1,0 +1,98 @@
+﻿<docking:DocumentWindow
+    x:Class="WindowsClient.Features.HistoryMatchingTabWindow.HistoryMatchingTabWindowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:AllPlots="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow.AllPlots"
+    xmlns:EnergyPlot="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow.EnergyPlot"
+    xmlns:FractionalFlowTab="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow.FractionalFlowTab"
+    xmlns:GraphicalMethod="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow.GraphicalMethod"
+    xmlns:PressureSimulationTabView="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow.PressureSimulationTab"
+    xmlns:TehraniAnalysisTab="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow.TehraniAnalysisTab"
+    xmlns:WdPlot="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow.WdPlot"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:docking="http://schemas.actiprosoftware.com/winfx/xaml/docking"
+    xmlns:features="clr-namespace:WindowsClient.Features"
+    xmlns:local="clr-namespace:WindowsClient.Features.HistoryMatchingTabWindow"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance Type=local:HistoryMatchingTabWindowViewModel}"
+    d:DesignHeight="695"
+    d:DesignWidth="1050"
+    mc:Ignorable="d">
+
+    <docking:AdvancedTabControl
+        x:Name="HistoryMatchingTabs"
+        Background="#eee"
+        BorderThickness="0,1,0,0"
+        TabStripPlacement="Top">
+        <docking:AdvancedTabControl.SelectedItem>
+            <MultiBinding Converter="{StaticResource ActiveTabFeatureConverter}">
+                <Binding Path="ActiveTab" />
+                <Binding
+                    ElementName="HistoryMatchingTabs"
+                    Mode="OneWay"
+                    Path="Items" />
+            </MultiBinding>
+        </docking:AdvancedTabControl.SelectedItem>
+
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.HistoryMatchingTehraniPlotTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="18" Source="../../../../ApplicationLayout/Icons/AreaPlot.png" />
+                    <TextBlock Margin="3" FontWeight="DemiBold">Tehrani Analysis</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <TehraniAnalysisTab:TehraniAnalysisTab Background="White" DataContext="{Binding TehraniAnalysisTabViewModel}" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.HistoryMatchingSimulationTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="18" Source="../../../../ApplicationLayout/Icons/Calculator.png" />
+                    <TextBlock Margin="3" FontWeight="DemiBold">Simulation</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <PressureSimulationTabView:PressureSimulationTabView DataContext="{Binding PressureSimulationViewModel}" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.HistoryMatchingGraphicalPlotTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="3" FontWeight="DemiBold">Graphical Plot</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <GraphicalMethod:GraphicalMethodTabView DataContext="{Binding GraphicalMethodTabViewModel}" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.HistoryMatchingEnergyPlotTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="18" Source="../../../../ApplicationLayout/Icons/EnergyPlot.jpeg" />
+                    <TextBlock Margin="3" FontWeight="DemiBold">Energy Plot</TextBlock>
+
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <EnergyPlot:EnergyPlotTabView DataContext="{Binding EnergyPlotViewModel}" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.HistoryMatchingFractionalFlowTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="3" FontWeight="DemiBold">Fractional Flow</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <FractionalFlowTab:FractionalFlowTabView DataContext="{Binding FractionalFlowTabViewModel}" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.HistoryMatchingWdPlotTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="3" FontWeight="DemiBold">WD Plot</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <WdPlot:WdPlotTab DataContext="{Binding WdPlotTabViewModel}" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.HistoryMatchingAllPlotsTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="3" FontWeight="DemiBold">All Plots</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <AllPlots:AllPlotsTabView DataContext="{Binding AllPlotsTabViewModel}" />
+        </docking:AdvancedTabItem>
+    </docking:AdvancedTabControl>
+</docking:DocumentWindow>

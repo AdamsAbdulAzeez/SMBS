@@ -1,0 +1,954 @@
+﻿<Window
+    x:Class="WindowsClient.Features.PvtMatchingTabWindow.MatchedParametersTab.AllMatchedParametersDialog.AllMatchedParametersView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enumBindingService="clr-namespace:WindowsClient.Shared.EnumBinding"
+    xmlns:enumSource="clr-namespace:WindowsClient.Shared.UIModels.MaterialBalance"
+    xmlns:local="clr-namespace:WindowsClient.Features.PvtMatchingTabWindow.MatchedParametersTab.AllMatchedParametersDialog"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:themes="http://schemas.actiprosoftware.com/winfx/xaml/themes"
+    MaxWidth="1000"
+    MaxHeight="630"
+    d:DataContext="{d:DesignInstance Type=local:AllMatchedParametersViewModel}"
+    d:Width="1000"
+    themes:WindowChrome.TitleBarHeader="All Matched Parameters"
+    FontSize="12"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterOwner"
+    WindowStyle="ToolWindow"
+    mc:Ignorable="d">
+
+    <themes:WindowChrome.Chrome>
+        <themes:WindowChrome TitleBarHeaderAlignment="Center" />
+    </themes:WindowChrome.Chrome>
+
+    <ScrollViewer
+        Margin="2"
+        Padding="20,10"
+        VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="IsReadOnly" Value="True" />
+                    <Setter Property="Margin" Value="2" />
+                    <Setter Property="Height" Value="25" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="2" />
+                    <Setter Property="Height" Value="25" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+            </StackPanel.Resources>
+            <TabControl>
+                <TabItem Header="Pb, Rs, Bo">
+                    <StackPanel>
+                        <GroupBox Header="Bubble Point">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Correlation names  -->
+                                <TextBlock
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="Glaso" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    Text="Standing" />
+                                <TextBlock
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Center"
+                                    Text="Lasater" />
+                                <TextBlock
+                                    Grid.Column="4"
+                                    HorizontalAlignment="Center"
+                                    Text="Vazquez-Beggs" />
+                                <TextBlock
+                                    Grid.Column="5"
+                                    HorizontalAlignment="Center"
+                                    Text="Petrosky" />
+                                <TextBlock
+                                    Grid.Column="6"
+                                    HorizontalAlignment="Center"
+                                    Text="Al-Marhoun" />
+                                <TextBlock
+                                    Grid.Column="7"
+                                    HorizontalAlignment="Center"
+                                    Text="De Ghetto" />
+
+                                <!--  Parameter 1  -->
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="Parameter 1" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.PbResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.PbResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.PbResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.PbResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.PbResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.PbResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.PbResult.C1}" />
+
+                                <!--  Parameter 2  -->
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="Parameter 2" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.PbResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.PbResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.PbResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.PbResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.PbResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.PbResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.PbResult.C2}" />
+
+                                <!--  Standard deviation  -->
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Text="Std Dev." />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.PbResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.PbResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.PbResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.PbResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.PbResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.PbResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.PbResult.StdDeviation}" />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Solution GOR">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Correlation names  -->
+                                <TextBlock
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="Glaso" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    Text="Standing" />
+                                <TextBlock
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Center"
+                                    Text="Lasater" />
+                                <TextBlock
+                                    Grid.Column="4"
+                                    HorizontalAlignment="Center"
+                                    Text="Vazquez-Beggs" />
+                                <TextBlock
+                                    Grid.Column="5"
+                                    HorizontalAlignment="Center"
+                                    Text="Petrosky" />
+                                <TextBlock
+                                    Grid.Column="6"
+                                    HorizontalAlignment="Center"
+                                    Text="Al-Marhoun" />
+                                <TextBlock
+                                    Grid.Column="7"
+                                    HorizontalAlignment="Center"
+                                    Text="De Ghetto" />
+
+                                <!--  Parameter 1  -->
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="Parameter 1" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.RsResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.RsResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.RsResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.RsResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.RsResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.RsResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.RsResult.C1}" />
+
+                                <!--  Parameter 2  -->
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="Parameter 2" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.RsResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.RsResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.RsResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.RsResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.RsResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.RsResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.RsResult.C2}" />
+
+                                <!--  Standard deviation  -->
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Text="Std Dev." />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.RsResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.RsResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.RsResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.RsResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.RsResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.RsResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.RsResult.StdDeviation}" />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Oil FVF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Correlation names  -->
+                                <TextBlock
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="Glaso" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    Text="Standing" />
+                                <TextBlock
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Center"
+                                    Text="Lasater" />
+                                <TextBlock
+                                    Grid.Column="4"
+                                    HorizontalAlignment="Center"
+                                    Text="Vazquez-Beggs" />
+                                <TextBlock
+                                    Grid.Column="5"
+                                    HorizontalAlignment="Center"
+                                    Text="Petrosky" />
+                                <TextBlock
+                                    Grid.Column="6"
+                                    HorizontalAlignment="Center"
+                                    Text="Al-Marhoun" />
+                                <TextBlock
+                                    Grid.Column="7"
+                                    HorizontalAlignment="Center"
+                                    Text="De Ghetto" />
+
+                                <!--  Parameter 1  -->
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="Parameter 1" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.BoResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.BoResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.BoResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.BoResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.BoResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.BoResult.C1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.BoResult.C1}" />
+
+                                <!--  Parameter 2  -->
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="Parameter 2" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.BoResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.BoResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.BoResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.BoResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.BoResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.BoResult.C2}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.BoResult.C2}" />
+
+                                <!--  Parameter 3  -->
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Text="Parameter 3" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.BoResult.C3}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.BoResult.C3}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.BoResult.C3}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.BoResult.C3}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.BoResult.C3}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.BoResult.C3}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.BoResult.C3}" />
+
+                                <!--  Parameter 4  -->
+                                <TextBlock
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Text="Parameter 4" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.BoResult.C4}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.BoResult.C4}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.BoResult.C4}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.BoResult.C4}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.BoResult.C4}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.BoResult.C4}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.BoResult.C4}" />
+
+                                <!--  Standard deviation  -->
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    Text="Std Dev." />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="1"
+                                    Text="{Binding GlasoPbRsBoCorrelationResult.BoResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="2"
+                                    Text="{Binding StandingPbRsBoCorrelationResult.BoResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="3"
+                                    Text="{Binding LasaterPbRsBoCorrelationResult.BoResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="4"
+                                    Text="{Binding VazquezBeggsPbRsBoCorrelationResult.BoResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="5"
+                                    Text="{Binding PetroskyPbRsBoCorrelationResult.BoResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="6"
+                                    Text="{Binding AlMarhounPbRsBoCorrelationResult.BoResult.StdDeviation}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="7"
+                                    Text="{Binding DeGhettoPbRsBoCorrelationResult.BoResult.StdDeviation}" />
+                            </Grid>
+                        </GroupBox>
+                        <StackPanel Margin="2,20" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Pb, Rs, Bo Correlation" />
+                            <ComboBox
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Width="250"
+                                Margin="30,2"
+                                ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:PbRsBoModel}}}"
+                                SelectedItem="{Binding SelectedPbRsBoModel}" />
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Uo, Ug, Bg">
+                    <StackPanel>
+                        <GroupBox Header="Oil Viscosity">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Correlation names  -->
+                                <TextBlock
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="Beal et al" />
+                                <TextBlock
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    Text="Beggs et al" />
+                                <TextBlock
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Center"
+                                    Text="Petrosky et al" />
+                                <TextBlock
+                                    Grid.Column="4"
+                                    HorizontalAlignment="Center"
+                                    Text="Egbogah et al" />
+                                <TextBlock
+                                    Grid.Column="5"
+                                    HorizontalAlignment="Center"
+                                    Text="Bergman-Sutton" />
+                                <TextBlock
+                                    Grid.Column="6"
+                                    HorizontalAlignment="Center"
+                                    Text="De Ghetto et al" />
+
+                                <!--  Parameter 1  -->
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="Parameter 1" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding BealOilViscosityParameters.C1, FallbackValue=1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    Text="{Binding BeggsOilViscosityParameters.C1, FallbackValue=1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    Text="{Binding PetroskyOilViscosityParameters.C1, FallbackValue=1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="4"
+                                    Text="{Binding EgbogahOilViscosityParameters.C1, FallbackValue=1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="5"
+                                    Text="{Binding BergmanOilViscosityParameters.C1, FallbackValue=1}" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="6"
+                                    Text="{Binding DeghettoOilViscosityParameters.C1, FallbackValue=1}" />
+
+                                <!--  Parameter 2  -->
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="Parameter 2" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding BealOilViscosityParameters.C2, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Text="{Binding BeggsOilViscosityParameters.C2, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="3"
+                                    Text="{Binding PetroskyOilViscosityParameters.C2, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="4"
+                                    Text="{Binding EgbogahOilViscosityParameters.C2, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="5"
+                                    Text="{Binding BergmanOilViscosityParameters.C2, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="6"
+                                    Text="{Binding DeghettoOilViscosityParameters.C2, FallbackValue=0}" />
+
+                                <!--  Parameter 3  -->
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Text="Parameter 3" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="{Binding BealOilViscosityParameters.C3, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="{Binding BeggsOilViscosityParameters.C3, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    Text="{Binding PetroskyOilViscosityParameters.C3, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="4"
+                                    Text="{Binding EgbogahOilViscosityParameters.C3, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="5"
+                                    Text="{Binding BergmanOilViscosityParameters.C3, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="6"
+                                    Text="{Binding DeghettoOilViscosityParameters.C3, FallbackValue=0}" />
+
+                                <!--  Parameter 4  -->
+                                <TextBlock
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    Text="Parameter 4" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    Text="{Binding BealOilViscosityParameters.C4, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="2"
+                                    Text="{Binding BeggsOilViscosityParameters.C4, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="3"
+                                    Text="{Binding PetroskyOilViscosityParameters.C4, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="4"
+                                    Text="{Binding EgbogahOilViscosityParameters.C4, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="5"
+                                    Text="{Binding BergmanOilViscosityParameters.C4, FallbackValue=0}" />
+                                <TextBox
+                                    Grid.Row="4"
+                                    Grid.Column="6"
+                                    Text="{Binding DeghettoOilViscosityParameters.C4, FallbackValue=0}" />
+
+                                <!--  Standard deviation  -->
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    Text="Std Dev." />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="1"
+                                    Text="{Binding BealOilViscosityParameters.StdDeviation, FallbackValue=0}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="2"
+                                    Text="{Binding BeggsOilViscosityParameters.StdDeviation, FallbackValue=0}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="3"
+                                    Text="{Binding PetroskyOilViscosityParameters.StdDeviation, FallbackValue=0}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="4"
+                                    Text="{Binding EgbogahOilViscosityParameters.StdDeviation, FallbackValue=0}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="5"
+                                    Text="{Binding BergmanOilViscosityParameters.StdDeviation, FallbackValue=0}" />
+                                <TextBlock
+                                    Grid.Row="5"
+                                    Grid.Column="6"
+                                    Text="{Binding DeghettoOilViscosityParameters.StdDeviation, FallbackValue=0}" />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Gas FVF">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Parameter 1  -->
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="Parameter 1" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding GasFVFParameters.C1, FallbackValue=1}" />
+
+
+                                <!--  Parameter 2  -->
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="Parameter 2" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding GasFVFParameters.C2, FallbackValue=0}" />
+
+
+                                <!--  Standard deviation  -->
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Text="Std Dev." />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="{Binding GasFVFParameters.StdDeviation, FallbackValue=0}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="4"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="5"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="6"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="7"
+                                    Text="" />
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Gas Viscosity">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <!--  Parameter 1  -->
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Text="Parameter 1" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding GasViscosityParameters.C1, FallbackValue=1}" />
+
+
+                                <!--  Parameter 2  -->
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="Parameter 2" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding GasViscosityParameters.C2, FallbackValue=0}" />
+
+
+                                <!--  Standard deviation  -->
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Text="Std Dev." />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="{Binding GasViscosityParameters.StdDeviation, FallbackValue=0}" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="4"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="5"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="6"
+                                    Text="" />
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="7"
+                                    Text="" />
+                            </Grid>
+                        </GroupBox>
+                        <StackPanel Margin="2,20" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Oil Viscosity Correlation" />
+                            <ComboBox
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Width="250"
+                                Height="26"
+                                Margin="30,2"
+                                ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:OilViscosityModel}}}"
+                                SelectedItem="{Binding SelectedOilViscosityModel}" />
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+
+    </ScrollViewer>
+</Window>

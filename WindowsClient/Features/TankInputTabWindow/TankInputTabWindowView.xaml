@@ -1,0 +1,100 @@
+﻿<docking:DocumentWindow
+    x:Class="WindowsClient.Features.TankInputTabWindow.TankInputTabWindowView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:AreaAndPoreVolumeVsDepthView="clr-namespace:WindowsClient.Features.TankInputTabWindow.AreaAndPoreVolumeVsDepthTab"
+    xmlns:InputDataTabView="clr-namespace:WindowsClient.Features.TankInputTabWindow.InputDataTab"
+    xmlns:ProductionDataTabView="clr-namespace:WindowsClient.Features.TankInputTabWindow.ProductionDataTab"
+    xmlns:WaterInfluxTabView="clr-namespace:WindowsClient.Features.TankInputTabWindow.WaterInfluxTab"
+    xmlns:RelPermTabView="clr-namespace:WindowsClient.Features.TankInputTabWindow.RelPermTab"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:docking="http://schemas.actiprosoftware.com/winfx/xaml/docking"
+    xmlns:features="clr-namespace:WindowsClient.Features"
+    xmlns:local="clr-namespace:WindowsClient.Features.TankInputTabWindow"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance Type=local:TankInputTabWindowViewModel}"
+    d:DesignHeight="695"
+    d:DesignWidth="1050"
+    mc:Ignorable="d">
+
+    <docking:AdvancedTabControl
+        x:Name="HistoryMatchingTabs"
+        Background="#eee"
+        BorderThickness="0,1,0,0"
+        TabStripPlacement="Top">
+        <docking:AdvancedTabControl.SelectedItem>
+            <MultiBinding Converter="{StaticResource ActiveTabFeatureConverter}">
+                <Binding Path="ActiveTab" />
+                <Binding
+                    ElementName="HistoryMatchingTabs"
+                    Mode="OneWay"
+                    Path="Items" />
+            </MultiBinding>
+        </docking:AdvancedTabControl.SelectedItem>
+
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.TankInputDataTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="18" Source="../../../../ApplicationLayout/Icons/Input.png" />
+                    <TextBlock
+                        Margin="3"
+                        FontSize="14"
+                        FontWeight="DemiBold">
+                        Input Data
+                    </TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <InputDataTabView:InputDataTabView DataContext="{Binding InputDataTabViewModel}" />
+        </docking:AdvancedTabItem>
+        
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.TankInputWaterInfluxTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="3"
+                        FontSize="14"
+                        FontWeight="DemiBold">
+                        Water Influx
+                    </TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <WaterInfluxTabView:WaterInfluxTabView DataContext="{Binding WaterInfluxTabViewModel}" />
+        </docking:AdvancedTabItem>
+        
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.TankInputRelPerm}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="3"
+                        FontSize="14"
+                        FontWeight="DemiBold">
+                        Rel Perm
+                    </TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <RelPermTabView:RelPermTabView DataContext="{Binding RelPermTabViewModel}" />
+            
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.TankInputProductionDataTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="18" Source="../../../../ApplicationLayout/Icons/Oil.png" />
+                    <TextBlock Margin="3" 
+                               FontWeight="DemiBold"
+                               FontSize="14">Production Data</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <ProductionDataTabView:ProductionDataTabView DataContext="{Binding ProductionDataTabViewModel}" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.TankInputAreaAndPoreVolumeVsDepth}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="3" 
+                               FontWeight="DemiBold"
+                               FontSize="14">Contacts</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <AreaAndPoreVolumeVsDepthView:AreaAndPoreVolumeVsDepthTabView DataContext="{Binding AreaAndPoreVolumeVsDepthTabViewModel}" />
+        </docking:AdvancedTabItem>
+    </docking:AdvancedTabControl>
+</docking:DocumentWindow>

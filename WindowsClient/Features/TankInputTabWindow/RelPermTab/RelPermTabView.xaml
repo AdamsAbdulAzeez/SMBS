@@ -1,0 +1,297 @@
+﻿<UserControl
+    x:Class="WindowsClient.Features.TankInputTabWindow.RelPermTab.RelPermTabView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enumSource="clr-namespace:WindowsClient.Shared.UIModels.MaterialBalance"
+    xmlns:local="clr-namespace:WindowsClient.Features.TankInputTabWindow.RelPermTab"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance Type=local:RelPermTabViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid Margin="0,3,0,0">
+        <Grid.ColumnDefinitions />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel
+            Margin="5,0,0,0"
+            HorizontalAlignment="Left"
+            Orientation="Horizontal">
+            <Button
+                Width="80"
+                Command="{Binding ShowTableCommand}"
+                Content="Table"
+                Style="{StaticResource SaveButtonStyle}" />
+            <Button
+                Width="80"
+                Command="{Binding ShowPlotCommand}"
+                Content="Plot"
+                Style="{StaticResource SaveButtonStyle}" />
+
+        </StackPanel>
+
+        <Grid
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            Visibility="{Binding ShowTable, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <GroupBox
+                Grid.Row="1"
+                Margin="0,20"
+                Padding="5">
+                <GroupBox.Header>
+                    <TextBlock
+                        FontSize="13"
+                        FontWeight="DemiBold"
+                        Text="Relative Permeability" />
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!--  Relative permeability function  -->
+                    <Grid
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,5,5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <!--  Relative permeability function  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,2,10,0"
+                            Text="Rel. Perm. from" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Height="25"
+                            Margin="0,2,0,0"
+                            Background="LightBlue"
+                            Text="Corey Functions"
+                            TextAlignment="Center" />
+                        <!--  Hysterisis  -->
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,2,10,0"
+                            Text="Hysterisis" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Height="25"
+                            Margin="0,2,0,0"
+                            Background="LightBlue"
+                            Text="No"
+                            TextAlignment="Center" />
+                        <!--  Modified  -->
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Margin="0,2,10,0"
+                            Text="Modified" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Height="25"
+                            Margin="0,2,0,0"
+                            Background="LightBlue"
+                            Text="No"
+                            TextAlignment="Center" />
+                    </Grid>
+                    <!--  Sweep efficiencies  -->
+                    <Grid
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <!--  Water sweep efficiency  -->
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,2,3,0"
+                            Text="Water Sweep Eff." />
+                        <TextBox
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Width="50"
+                            Margin="0,2,3,0"
+                            Text="" />
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Margin="0,2,3,0"
+                            Text="percent" />
+                        <!--  Gas sweep efficiency  -->
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,2,3,0"
+                            Text="Gas Sweep Eff." />
+                        <TextBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="50"
+                            Margin="0,2,3,0"
+                            Text="" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Margin="0,2,3,0"
+                            Text="percent" />
+                    </Grid>
+                    <!--  Relative permeability input  -->
+                    <DataGrid
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        MinWidth="500"
+                        MinHeight="100"
+                        MaxWidth="700"
+                        Margin="0,50"
+                        VerticalAlignment="Top"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        CanUserReorderColumns="False"
+                        ItemsSource="{Binding RelativePermeabilityData}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Width="50"
+                                Binding="{Binding Name}"
+                                Header=""
+                                IsReadOnly="True" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding ResidualSaturation}"
+                                Header="Residual Saturation (frac.)" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding EndPoint}"
+                                Header="End Point (frac.)" />
+                            <DataGridTextColumn
+                                Width="*"
+                                Binding="{Binding Exponent}"
+                                Header="Exponent" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="4"
+            Visibility="{Binding ShowTable, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="2" MinWidth="200">
+                <StackPanel
+                    Margin="0,50"
+                    HorizontalAlignment="Left">
+                    <Button
+                        Width="200"
+                        Height="25"
+                        Margin="0,1"
+                        Padding="5"
+                        HorizontalContentAlignment="Left"
+                        BorderThickness="0"
+                        Command="{Binding PlotCommand}"
+                        CommandParameter="{x:Static enumSource:RelativePermPlotType.KrwVsSw}"
+                        Content="Krw vs Sw" />
+                    <Button
+                        Width="200"
+                        Height="25"
+                        Margin="0,1"
+                        Padding="5"
+                        HorizontalContentAlignment="Left"
+                        BorderThickness="0"
+                        Command="{Binding PlotCommand}"
+                        CommandParameter="{x:Static enumSource:RelativePermPlotType.KrgVsSw}"
+                        Content="Krg vs Sw" />
+                    <Button
+                        Width="200"
+                        Height="25"
+                        Margin="0,1"
+                        Padding="5"
+                        HorizontalContentAlignment="Left"
+                        BorderThickness="0"
+                        Command="{Binding PlotCommand}"
+                        CommandParameter="{x:Static enumSource:RelativePermPlotType.KroVsSo}"
+                        Content="Kro vs So" />
+                    <Button
+                        Width="200"
+                        Height="25"
+                        Margin="0,1"
+                        Padding="5"
+                        HorizontalContentAlignment="Left"
+                        BorderThickness="0"
+                        Command="{Binding PlotCommand}"
+                        CommandParameter="{x:Static enumSource:RelativePermPlotType.KrgVsSg}"
+                        Content="Krg vs Sg" />
+                    <Button
+                        Width="200"
+                        Height="25"
+                        Margin="0,1"
+                        Padding="5"
+                        HorizontalContentAlignment="Left"
+                        BorderThickness="0"
+                        Command="{Binding PlotCommand}"
+                        CommandParameter="{x:Static enumSource:RelativePermPlotType.KroVsSw}"
+                        Content="Kro vs Sw" />
+                    <Button
+                        Width="200 "
+                        Height="25"
+                        Margin="0,1"
+                        Padding="5"
+                        HorizontalContentAlignment="Left"
+                        BorderThickness="0"
+                        Command="{Binding PlotCommand}"
+                        CommandParameter="{x:Static enumSource:RelativePermPlotType.KroVsSg}"
+                        Content="Kro vs Sg" />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button
+                    Width="75"
+                    Height="25"
+                    Margin="5,0"
+                    Padding="5"
+                    HorizontalAlignment="left"
+                    BorderThickness="0"
+                    Command="{Binding ClearChartCommand}"
+                    Content="Refresh Plot" />
+
+                <ContentControl Grid.Row="1" Content="{Binding Chart, Converter={StaticResource CartesianChartConverter}}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

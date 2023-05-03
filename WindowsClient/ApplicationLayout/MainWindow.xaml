@@ -1,0 +1,55 @@
+﻿<Window x:Class="WindowsClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" WindowState="Maximized"
+        xmlns:themes="http://schemas.actiprosoftware.com/winfx/xaml/themes"
+        xmlns:ribbon="http://schemas.actiprosoftware.com/winfx/xaml/ribbon"
+        xmlns:docksite="clr-namespace:WindowsClient.ApplicationLayout.TabbedWindowWorkspace"
+        xmlns:dataExplorer="clr-namespace:WindowsClient.ApplicationLayout.LeftPane.DataExplorer"
+        xmlns:dashboardExplorer="clr-namespace:WindowsClient.ApplicationLayout.LeftPane.DashboardExplorer"
+        xmlns:ribbonModelling="clr-namespace:WindowsClient.ApplicationLayout.RibbonTabs.ModellingTab"
+        xmlns:ribbonPreferences="clr-namespace:WindowsClient.ApplicationLayout.RibbonTabs.PreferencesTab"
+        xmlns:ribbonAnalytics="clr-namespace:WindowsClient.ApplicationLayout.RibbonTabs.AnalyticsTab"
+        themes:WindowChrome.TitleBarHeader="SEPAL SMBS"
+        Height="450"
+        Width="800"
+        xmlns:docking="http://schemas.actiprosoftware.com/winfx/xaml/docking"
+        xmlns:statusBar="clr-namespace:WindowsClient.ApplicationLayout.StatusBar"
+        themes:WindowChrome.IsOverlayVisible="True">
+
+    <themes:WindowChrome.Chrome>
+        <themes:WindowChrome TitleBarHeaderAlignment="Center" />
+    </themes:WindowChrome.Chrome>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <ribbon:Ribbon IsQuickAccessToolBarCustomizeButtonVisible="False"
+                       IsApplicationButtonVisible="False"
+                       Margin="0,-35,0,0">
+            <ribbonModelling:ModellingTabView />
+            <!--<ribbonPreferences:PreferencesTabView />-->
+            <!--<ribbonAnalytics:AnalyticsTabView />-->
+
+            <ribbon:Ribbon.Content>
+                <docking:DockSite>
+                    <docking:SplitContainer>
+                        <docking:ToolWindowContainer>
+                            <dataExplorer:DataExplorerView />
+                            <dashboardExplorer:DashboardExplorerView Title="Dashboards" />
+                            <dashboardExplorer:DashboardExplorerView Title="Scripts"/>
+                        </docking:ToolWindowContainer>
+
+                        <docksite:TabbedWindowWorkspaceView />
+                    </docking:SplitContainer>
+                </docking:DockSite>
+            </ribbon:Ribbon.Content>
+        </ribbon:Ribbon>
+
+        <statusBar:StatusBarView Grid.Row="1"
+                                 Margin="5,0,0,0" />
+    </Grid>
+</Window>

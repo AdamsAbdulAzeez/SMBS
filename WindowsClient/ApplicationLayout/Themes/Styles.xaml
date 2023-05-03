@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="./DataGrid/Styles.xaml" />
+        <ResourceDictionary Source="./TextBox/Styles.xaml" />
+        <ResourceDictionary Source="./Combobox/Styles.xaml" />
+        <ResourceDictionary Source="./Button/Styles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

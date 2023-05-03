@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="WindowsClient.Features.HistoryMatchingTabWindow.AllPlots.AllPlotsTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1"
+                Grid.RowSpan="2">
+            <ContentControl
+                     Content="{Binding TehraniControl, Converter={StaticResource ChartWrapperControlConverter}}" />
+        </Border>
+
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1"
+                Grid.Column="1">
+            <ContentControl
+                     Content="{Binding SimulationControl, Converter={StaticResource CartesianChartConverter}}" />
+        </Border>
+
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1"
+                Grid.Row="1" Grid.Column="1">
+            <ContentControl
+                     Content="{Binding EnergyControl, Converter={StaticResource ChartWrapperControlConverter}}" />
+        </Border>
+
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1"
+                Grid.Column="2">
+            <ContentControl
+                     Content="{Binding GraphicalControl, Converter={StaticResource ChartWrapperControlConverter}}" />
+        </Border>
+
+        <Border BorderBrush="LightGray" 
+                BorderThickness="1"
+                Grid.Row="1" Grid.Column="2">
+            <ContentControl
+                     Content="{Binding ChartControl, Converter={StaticResource CartesianChartConverter}}" />
+        </Border>
+    </Grid>
+
+</UserControl>

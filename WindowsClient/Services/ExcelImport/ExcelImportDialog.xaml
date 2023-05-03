@@ -1,0 +1,97 @@
+﻿<Window x:Class="WindowsClient.Services.ExcelImport.ExcelImportDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindowsClient.Services.ExcelImport"
+        xmlns:themes="http://schemas.actiprosoftware.com/winfx/xaml/themes"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterOwner"
+        d:DataContext="{d:DesignInstance Type=local:ExcelImportDialogViewModel}"
+        mc:Ignorable="d"
+        Title="Import Data" FontSize="15" Height="310" Width="505">
+    <themes:WindowChrome.Chrome>
+        <themes:WindowChrome TitleBarHeaderAlignment="Left"  />
+    </themes:WindowChrome.Chrome>
+    <Border BorderThickness="1" 
+                CornerRadius="3" 
+                Margin="5" 
+                Width="500" 
+                Padding="3" 
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Center">
+        <Grid DockPanel.Dock="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" 
+                            Grid.Column="0" >
+                <Button Content=" ... " 
+                            Style="{StaticResource SaveButtonStyle}"
+                            Width="40" 
+                            Height="30" 
+                            Margin="4" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding BrowseFileCommand}"
+                            CommandParameter="{Binding}"
+                            Grid.Row="0" />
+                <TextBlock VerticalAlignment="Center" 
+                               Margin="1" Padding="5" 
+                               FontStyle="Italic" 
+                               Text="Browse the Excel file that contains the input data" TextWrapping="Wrap"  />
+            </StackPanel>
+
+            <Border Grid.Row="1" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="45" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="#4682B4" BorderThickness="0.5" VerticalAlignment="Top"/>
+                    <Border VerticalAlignment="Bottom" BorderBrush="#4682B4" BorderThickness=".5"/>
+                    <Grid TextBlock.FontSize="14" Grid.Row="0">
+                        <Grid Margin="50,0,0,0" >
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,10,0,10" Text="{Binding FileName}"   TextTrimming="WordEllipsis" />
+                        </Grid>
+                        <Label Content="File:- " Margin="5"  />
+                    </Grid>
+                    <Grid Margin="0,10,0,0" 
+                              Grid.Row="1">
+                        <DockPanel Margin="2" >
+                            <Label HorizontalAlignment="Left" Content="Sheet:" 
+                                       VerticalAlignment="Center" 
+                                       FontSize="13" 
+                                       Grid.Row="0" Grid.Column="0"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" 
+                                          Padding="3" Margin="1" 
+                                          Height="30"
+                                          IsEnabled="{Binding CanSelectSheet}"
+                                          ItemsSource="{Binding SheetNames}" 
+                                          SelectedItem="{Binding SelectedSheet}">
+                                <ComboBox.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Margin" Value="3"/>
+                                        <Setter Property="Padding" Value="1"/>
+                                    </Style>
+                                </ComboBox.Resources>
+                            </ComboBox>
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <Button Content="Done" 
+                            Style="{StaticResource SaveButtonStyle}"
+                            Width="50"
+                            Height="30" 
+                            Margin="4" 
+                            Command="{Binding DoneCommand}" 
+                            CommandParameter="{Binding}"
+                            Grid.Row="2"
+                            HorizontalAlignment="Right"/>
+        </Grid>
+    </Border>
+</Window>

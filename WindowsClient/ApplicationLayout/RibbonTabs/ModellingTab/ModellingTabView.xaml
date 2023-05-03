@@ -1,0 +1,100 @@
+﻿<ribbon:Tab
+    x:Class="WindowsClient.ApplicationLayout.RibbonTabs.ModellingTab.ModellingTabView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WindowsClient.ApplicationLayout.RibbonTabs.ModellingTab"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ribbon="http://schemas.actiprosoftware.com/winfx/xaml/ribbon"
+    d:DataContext="{d:DesignInstance Type=local:ModellingTabViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Label="Modeling"
+    mc:Ignorable="d">
+    <ribbon:Group Label="Model Data">
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding CreateModelCommand}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/Network.png"
+            KeyTipAccessText="M"
+            Label="New"
+            VariantSize="Large" />
+
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding ExportCommand}"
+            CommandParameter="{Binding}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/Upload.png"
+            KeyTipAccessText="M"
+            Label="Export"
+            VariantSize="Large" />
+
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding ImportCommand}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/Download.png"
+            KeyTipAccessText="M"
+            Label="Import"
+            VariantSize="Large" />
+
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding SaveModelCommand}"
+            CommandParameter="{Binding}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/Save.png"
+            KeyTipAccessText="M"
+            Label="Save"
+            VariantSize="Large" />
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding DownloadTemplateCommand}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/ExcelTemplate.png"
+            KeyTipAccessText="M"
+            Label="Download Template"
+            VariantSize="Large" />
+
+
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding OpenNewScriptWindowCommand}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/CodeEditor.png"
+            KeyTipAccessText="M"
+            Label="New Script"
+            VariantSize="Large" />
+
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding RunScriptCommand}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/Run.png"
+            KeyTipAccessText="M"
+            Label="Run Script"
+            VariantSize="Large" />
+    </ribbon:Group>
+    <ribbon:Group Label="Tehrani Configuration">
+
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding SetupRegressionCommand}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/Add.png"
+            KeyTipAccessText="M"
+            Label="Setup Regression"
+            VariantSize="Large" />
+
+        <ribbon:Button
+            Padding="8"
+            BorderThickness="1"
+            Command="{Binding RunSimulationCommand}"
+            ImageSourceLarge="../../../ApplicationLayout/Icons/Run.png"
+            KeyTipAccessText="M"
+            Label="Run Simulation"
+            VariantSize="Large" />
+    </ribbon:Group>
+</ribbon:Tab>

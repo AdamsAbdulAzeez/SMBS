@@ -1,0 +1,62 @@
+﻿<docking:DocumentWindow
+             xmlns:docking="http://schemas.actiprosoftware.com/winfx/xaml/docking"
+             x:Class="WindowsClient.Features.ProductionPredictionTabWindow.ProductionPredictionTabView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:features="clr-namespace:WindowsClient.Features"
+             xmlns:local="clr-namespace:WindowsClient.Features.ProductionPredictionTabWindow"
+             xmlns:PredictionSetupTab="clr-namespace:WindowsClient.Features.ProductionPredictionTabWindow.PredictionSetupTab"
+             xmlns:ProductionAndConstraintsTab="clr-namespace:WindowsClient.Features.ProductionPredictionTabWindow.ProductionAndConstraints"
+             xmlns:WellTypeDefinitionTab="clr-namespace:WindowsClient.Features.ProductionPredictionTabWindow.WellTypeDefinitionTab"
+             mc:Ignorable="d" 
+             d:DesignHeight="695"
+             d:DesignWidth="1050">
+
+    <docking:AdvancedTabControl
+        x:Name="HistoryMatchingTabs"
+        Background="#eee"
+        BorderThickness="0,1,0,0"
+        TabStripPlacement="Top">
+        <docking:AdvancedTabControl.SelectedItem>
+            <MultiBinding Converter="{StaticResource ActiveTabFeatureConverter}">
+                <Binding Path="ActiveTab" />
+                <Binding
+                    ElementName="HistoryMatchingTabs"
+                    Mode="OneWay"
+                    Path="Items" />
+            </MultiBinding>
+        </docking:AdvancedTabControl.SelectedItem>
+
+        <docking:AdvancedTabItem Tag="{x:Static features:FeatureTabs.PredictionSetupTab}">
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    
+                    <TextBlock Margin="3" FontWeight="DemiBold">Prediction Setup</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <PredictionSetupTab:ProductionSetupTabView Background="White" />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem >
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+                    
+                    <TextBlock Margin="3" FontWeight="DemiBold">Production and Constraints</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <ProductionAndConstraintsTab:ProductionAndConstraintsTabView />
+        </docking:AdvancedTabItem>
+        <docking:AdvancedTabItem >
+            <docking:AdvancedTabItem.Header>
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock Margin="3" FontWeight="DemiBold">Well Type Definition</TextBlock>
+                </StackPanel>
+            </docking:AdvancedTabItem.Header>
+            <WellTypeDefinitionTab:WellTypeDefinitionTabView DataContext="{Binding WellTypeDefinitionTabViewModel}" />
+        </docking:AdvancedTabItem>
+
+
+    </docking:AdvancedTabControl>
+</docking:DocumentWindow>

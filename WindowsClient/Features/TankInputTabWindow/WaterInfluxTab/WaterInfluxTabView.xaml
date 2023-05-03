@@ -1,0 +1,316 @@
+﻿<UserControl
+    x:Class="WindowsClient.Features.TankInputTabWindow.WaterInfluxTab.WaterInfluxTabView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:CypherCrescent.Units.Controls;assembly=CypherCrescent.Units.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enumBindingService="clr-namespace:WindowsClient.Shared.EnumBinding"
+    xmlns:enumSource="clr-namespace:WindowsClient.Shared.UIModels.MaterialBalance"
+    xmlns:local="clr-namespace:WindowsClient.Features.TankInputTabWindow.WaterInfluxTab"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Padding="20,5"
+    HorizontalAlignment="Left"
+    d:DataContext="{d:DesignInstance Type=local:WaterInfluxTabViewModel}"
+    d:DesignHeight="660"
+    d:DesignWidth="600"
+    mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Water Influx Model Input">
+                <Grid Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="109.233" />
+                            <ColumnDefinition Width="400" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="3"
+                            Text="Model" />
+                        <ComboBox
+                            Grid.Column="1"
+                            ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:WaterInfluxModel}}}"
+                            SelectedItem="{Binding Tank.Aquifer.ModelType, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                    </Grid>
+
+                    <!--  Comboboxes  -->
+                    <Grid Grid.Row="1" Visibility="{Binding IsNone, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="400" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text=" Boundary Condition" />
+                        <ComboBox
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:BoundaryCondition}}}"
+                            SelectedItem="{Binding Tank.Aquifer.BoundaryType}" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text=" Geometry" />
+                        <ComboBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:Geometry}}}"
+                            SelectedItem="{Binding Tank.Aquifer.Configuration.Geometry, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text=" Position"
+                            Visibility="{Binding IsNone, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                        <ComboBox
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:Position}}}"
+                            SelectedItem="{Binding Tank.Aquifer.Configuration.Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Visibility="{Binding IsNone, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                    </Grid>
+
+                    <!--  Regression Parameters  -->
+                    <Grid
+                        Grid.Row="2"
+                        Margin="2,10,2,2"
+                        Visibility="{Binding IsNone, Converter={StaticResource InverseBooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="70" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Border
+                            Grid.Row="1"
+                            Grid.RowSpan="11"
+                            Grid.Column="1"
+                            Margin="10"
+                            Background="LightBlue" />
+
+
+                        <!--  Thickness  -->
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text=" Reservoir Thickness" />
+                        <TextBox
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="2,4,2,0"
+                            Text="{Binding Tank.Thickness.CurrentValue.DisplayValue}" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Text="{Binding Tank.Thickness.CurrentValue.DisplayUnit}" />
+
+                        <!--  Reservoir Radius  -->
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Text=" Reservoir Radius "
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Radius.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock
+                            Grid.Row="2"
+                            Grid.Column="2"
+                            Text="{Binding Tank.Radius.CurrentValue.DisplayUnit}"
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  Outer/inner radius  -->
+                        <TextBlock
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Text=" Outer/Inner Radius"
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Aquifer.OuterInnerRadiusRatio.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  Encroachment angle  -->
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Text=" Encroachment Angle"
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Aquifer.EncroachmentAngle.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            Text="{Binding Tank.Aquifer.EncroachmentAngle.CurrentValue.DisplayUnit}"
+                            Visibility="{Binding IsRadial, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  Aquifer permeability  -->
+                        <TextBlock
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Text=" Aquifer Permeability" />
+                        <TextBox
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Rock.Permeability.CurrentValue.DisplayValue}" />
+                        <TextBlock
+                            Grid.Row="5"
+                            Grid.Column="2"
+                            Text="{Binding Tank.Rock.Permeability.CurrentValue.DisplayUnit}" />
+
+                        <!--  STOIIP  -->
+                        <TextBlock
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Text=" STOIIP"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Text="{Binding Tank.STOIP.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock
+                            Grid.Row="6"
+                            Grid.Column="2"
+                            Text="{Binding Tank.STOIP.CurrentValue.DisplayUnit}"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  GIIP  -->
+                        <TextBlock
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Text=" GIIP"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Text="{Binding Tank.GIIP.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                        <TextBlock
+                            Grid.Row="6"
+                            Grid.Column="2"
+                            Text="{Binding Tank.GIIP.CurrentValue.DisplayUnit}"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+
+                        <!--  Aquifer volume  -->
+                        <TextBlock
+                            Grid.Row="7"
+                            Grid.Column="0"
+                            Text=" Aquifer Volume"
+                            Visibility="{Binding IsLinear, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Aquifer.Volume.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsLinear, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock
+                            Grid.Row="7"
+                            Grid.Column="2"
+                            Text="{Binding Tank.Aquifer.Volume.CurrentValue.DisplayUnit}"
+                            Visibility="{Binding IsLinear, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  Reservoir width  -->
+                        <TextBlock
+                            Grid.Row="8"
+                            Grid.Column="0"
+                            Text=" Reservoir Width"
+                            Visibility="{Binding IsLinear, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Width.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsLinear, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock
+                            Grid.Row="8"
+                            Grid.Column="2"
+                            Text="{Binding Tank.Width.CurrentValue.DisplayUnit}"
+                            Visibility="{Binding IsLinear, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  Gas cap  -->
+                        <TextBlock
+                            Grid.Row="9"
+                            Grid.Column="0"
+                            Text=" Gas Cap"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBox
+                            Grid.Row="9"
+                            Grid.Column="1"
+                            Text="{Binding Tank.GasCap.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  Anisotropy  -->
+                        <TextBlock
+                            Grid.Row="10"
+                            Grid.Column="0"
+                            Text="Anisotropy"
+                            Visibility="{Binding IsBottom, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <TextBox
+                            Grid.Row="10"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Rock.Anisotropy.CurrentValue.DisplayValue}"
+                            Visibility="{Binding IsBottom, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        <!--  Porosity  -->
+                        <TextBlock
+                            Grid.Row="11"
+                            Grid.Column="0"
+                            Text="Porosity" />
+                        <TextBox
+                            Grid.Row="11"
+                            Grid.Column="1"
+                            Text="{Binding Tank.Rock.Porosity.CurrentValue.DisplayValue}" />
+
+                        <TextBlock
+                            Grid.Row="11"
+                            Grid.Column="2"
+                            Text="{Binding Tank.Rock.Porosity.CurrentValue.DisplayUnit}" />
+                    </Grid>
+
+                </Grid>
+            </GroupBox>
+
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

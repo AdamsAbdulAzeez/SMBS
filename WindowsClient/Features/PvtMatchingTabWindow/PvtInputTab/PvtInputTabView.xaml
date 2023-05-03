@@ -1,0 +1,632 @@
+﻿<UserControl
+    x:Class="WindowsClient.Features.PvtMatchingTabWindow.PvtInputTab.PvtInputTabView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enumBindingService="clr-namespace:WindowsClient.Shared.EnumBinding"
+    xmlns:enumSource="clr-namespace:WindowsClient.Shared.UIModels.MaterialBalance"
+    xmlns:local="clr-namespace:WindowsClient.Features.PvtMatchingTabWindow.PvtInputTab"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance Type=local:PvtInputTabViewModel}"
+    d:DesignHeight="700"
+    d:DesignWidth="1329.333"
+    Background="WhiteSmoke"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Margin" Value="2,3" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid MinWidth="700" Margin="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Height="26">
+                <Button
+                    Width="100"
+                    HorizontalAlignment="Right"
+                    Command="{Binding ImportPvtMatchingInputCommand}"
+                    CommandParameter="{Binding}"
+                    Content="Import"
+                    Style="{StaticResource SaveButtonStyle}"
+                    Visibility="{Binding UseTables, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="500" />
+                    <ColumnDefinition MaxWidth="400" />
+                </Grid.ColumnDefinitions>
+                <GroupBox
+                    Grid.Column="0"
+                    Margin="4,4,4,4"
+                    Padding="2,10">
+                    <GroupBox.Header>
+                        <TextBlock
+                            FontSize="13"
+                            FontWeight="DemiBold"
+                            Text="Input Parameters" />
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".5*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width=".2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="Formation GOR"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding Tank.PvtInitialCondition.GOR}"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="3,0,0,0"
+                                VerticalAlignment="Center"
+                                Text="scf/stb"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Stretch"
+                                Text="Oil Gravity"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text="{Binding Tank.PvtInitialCondition.OilGravity}"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Margin="3,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="API"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Text="Gas Gravity"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Text="{Binding Tank.PvtInitialCondition.GasGravity}"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Margin="3,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="sp. gravity"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Text="Oil Density"
+                                Visibility="{Binding GasOilDensityVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                Text="{Binding Tank.LabPvt.SurfacePVT.OilDensity}"
+                                Visibility="{Binding GasOilDensityVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="ppp"
+                                Visibility="{Binding GasOilDensityVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Text="Gas Density"
+                                Visibility="{Binding GasOilDensityVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                Text="{Binding Tank.LabPvt.SurfacePVT.GasDensity}"
+                                Visibility="{Binding GasOilDensityVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="sss"
+                                Visibility="{Binding GasOilDensityVisibility, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                        </Grid>
+                        <Grid Grid.Row="1" Visibility="{Binding GasOilDensityVisibility, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".5*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width=".2*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Separator Pressure"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="psia"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="Separator Temperature"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="&#186;F"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Text="Separator gas gravity"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="2"
+                                Margin="3,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="sp. gravity"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Text="Separator GOR"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="3"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="scf/stb"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Text="Tank GOR"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="4"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="scf/stb"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Text="Tank gas gravity"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="5"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="sp. gravity"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                MaxWidth="140"
+                                Text="Dew Point at reservoir temperature"
+                                TextWrapping="Wrap"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="6"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="psia"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                Text="Reservoir Temperature"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="7"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="&#186;F"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Text="Reservoir Pressure"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="8"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="8"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="psia"
+                                Visibility="{Binding IsCondensateTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="9"
+                                Grid.Column="0"
+                                Text="Condensate to gas ratio"
+                                Visibility="{Binding IsGasTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="9"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsGasTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="9"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="scf/scf"
+                                Visibility="{Binding IsGasTank, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="10"
+                                Grid.Column="0"
+                                Text="Condensate Gravity"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <TextBox
+                                Grid.Row="10"
+                                Grid.Column="1"
+                                Text=""
+                                Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <TextBlock
+                                Grid.Row="10"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="kg/m3"
+                                Visibility="{Binding IsOilTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                Grid.Row="11"
+                                Grid.Column="0"
+                                Text="Water Salinity" />
+                            <TextBox
+                                Grid.Row="11"
+                                Grid.Column="1"
+                                Text="{Binding Tank.PvtInitialCondition.WaterSalinity}" />
+                            <TextBlock
+                                Grid.Row="11"
+                                Grid.Column="2"
+                                Margin="3,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="ppm" />
+
+                            <TextBlock
+                                Grid.Row="12"
+                                Grid.Column="0"
+                                Text="Mole Percent H2S" />
+                            <TextBox
+                                Grid.Row="12"
+                                Grid.Column="1"
+                                Text="{Binding Tank.PvtInitialCondition.MoleH2S}" />
+                            <TextBlock
+                                Grid.Row="12"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="%" />
+
+                            <TextBlock
+                                Grid.Row="13"
+                                Grid.Column="0"
+                                Text="Mole Percent CO2" />
+                            <TextBox
+                                Grid.Row="13"
+                                Grid.Column="1"
+                                Text="{Binding Tank.PvtInitialCondition.MoleCO2}" />
+                            <TextBlock
+                                Grid.Row="13"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="%" />
+
+                            <TextBlock
+                                Grid.Row="20"
+                                Grid.Column="0"
+                                Text="Mole Percent N2" />
+                            <TextBox
+                                Grid.Row="20"
+                                Grid.Column="1"
+                                Text="{Binding Tank.PvtInitialCondition.MoleN2}" />
+                            <TextBlock
+                                Grid.Row="20"
+                                Grid.Column="2"
+                                Margin="0,3,0,0"
+                                VerticalAlignment="Center"
+                                Text="%" />
+                        </Grid>
+                    </Grid>
+
+                </GroupBox>
+                <StackPanel Grid.Column="1">
+                    <GroupBox Margin="2,5" IsEnabled="{Binding IsEnableCondensateTable}">
+                        <GroupBox.Header>
+                            <TextBlock
+                                FontSize="13"
+                                FontWeight="DemiBold"
+                                Text="Separator" />
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <ComboBox
+                                Margin="0,15"
+                                ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:SeparatorStage}}}"
+                                SelectedItem="{Binding SelectedSeparatorStage}" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+
+                                <GroupBox>
+                                    <GroupBox.Header>
+                                        <TextBlock
+                                            FontSize="13"
+                                            FontWeight="DemiBold"
+                                            Text="One" />
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="Temperature" />
+                                        <TextBox Grid.Column="1" Text="{Binding Tank.SeparatorConfiguration.Tsep1}" />
+                                        <TextBlock Grid.Column="2" Text="(&#186;F)" />
+
+                                        <TextBlock Grid.Row="1" Text="Pressure" />
+                                        <TextBox
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding Tank.SeparatorConfiguration.Psep1}" />
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Text="(psia)" />
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Row="1" Visibility="{Binding IsSingleStage, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+                                    <GroupBox.Header>
+                                        <TextBlock
+                                            FontSize="13"
+                                            FontWeight="DemiBold"
+                                            Text="Two" />
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="Temperature" />
+                                        <TextBox Grid.Column="1" Text="{Binding Tank.SeparatorConfiguration.Tsep2}" />
+                                        <TextBlock Grid.Column="2" Text="(&#186;F)" />
+
+                                        <TextBlock Grid.Row="1" Text="Pressure" />
+                                        <TextBox
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding Tank.SeparatorConfiguration.Psep2}" />
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Text="(psia)" />
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Row="2" Visibility="{Binding IsThreeStage, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <GroupBox.Header>
+                                        <TextBlock
+                                            FontSize="13"
+                                            FontWeight="DemiBold"
+                                            Text="Three" />
+                                    </GroupBox.Header>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="Temperature" />
+                                        <TextBox Grid.Column="1" Text="{Binding Tank.SeparatorConfiguration.Tsep3}" />
+                                        <TextBlock Grid.Column="2" Text="(&#186;F)" />
+
+                                        <TextBlock Grid.Row="1" Text="Pressure" />
+                                        <TextBox
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Text="{Binding Tank.SeparatorConfiguration.Psep3}" />
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Text="(psia)" />
+
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox IsEnabled="{Binding IsEnableCondensateTable}">
+                        <GroupBox.Header>
+                            <TextBlock
+                                FontSize="13"
+                                FontWeight="DemiBold"
+                                Text="Correlations" />
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Pb, Rs, Bo"
+                                Visibility="{Binding IsGasTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <ComboBox
+                                ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:PbRsBoModel}}}"
+                                SelectedItem="{Binding SelectedPbRsBoModel}"
+                                Visibility="{Binding IsGasTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Oil Viscosity"
+                                Visibility="{Binding IsGasTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                            <ComboBox
+                                ItemsSource="{Binding Source={enumBindingService:EnumBindingSource {x:Type enumSource:OilViscosityModel}}}"
+                                SelectedItem="{Binding SelectedOilViscosityModel}"
+                                Visibility="{Binding IsGasTank, Converter={StaticResource InverseBooleanToVisibilityConverter}}" />
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Margin="2,30,2,10">
+                        <GroupBox.Header>
+                            <TextBlock
+                                FontSize="13"
+                                FontWeight="DemiBold"
+                                Text="PVT Data" />
+                        </GroupBox.Header>
+                        <StackPanel>
+                            <RadioButton
+                                Margin="2,5"
+                                Content="Use Tables"
+                                IsChecked="{Binding UseTables}" />
+                            <RadioButton
+                                Margin="2,5"
+                                Content="Use Matching"
+                                IsChecked="{Binding UseMatching}" />
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>

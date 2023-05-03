@@ -1,0 +1,119 @@
+﻿<Window x:Class="WindowsClient.Features.DashboardTabWindow.CartesianPlots.ConfigureAxes.ConfigureAxesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:docking="http://schemas.actiprosoftware.com/winfx/xaml/docking"
+        xmlns:themes="http://schemas.actiprosoftware.com/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Background="#eee"
+        WindowStyle="ToolWindow"
+        WindowStartupLocation="CenterOwner"
+        Height="600" Width="400"
+        Title="Configure Axes"
+        Padding="5">
+    <themes:WindowChrome.Chrome>
+        <themes:WindowChrome TitleBarHeaderAlignment="Center" />
+    </themes:WindowChrome.Chrome>
+    <Grid
+          Margin="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" MinWidth="50"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="X Axes Configuration"
+                       Grid.ColumnSpan="2"
+                       Margin="0,0,0,10"
+                       Style="{StaticResource PageHeaderStyle}"></TextBlock>
+            <TextBlock Text="Primary X Axis Label"
+                       Grid.Row="1"/>
+            <TextBox Grid.Column="1"
+                      Grid.Row="1" />
+
+            <TextBlock Text="Secondary X Axis Label"
+                       Grid.Row="2"/>
+            <TextBox Grid.Column="1"
+                     Grid.Row="2" />
+
+
+            <CheckBox Grid.Column="2"
+                     Grid.Row="3"
+                     Content="Secondary X Axis"/>
+
+            <TextBlock Text="Y Axes Configuration"
+                       Grid.ColumnSpan="2"
+                       Grid.Row="4"
+                       Margin="0,0,0,10"
+                       Style="{StaticResource PageHeaderStyle}"></TextBlock>
+
+        <DataGrid Grid.Row="5"
+                      Grid.ColumnSpan="2"
+                      DataGridCell.Selected="OnCellSelectedBeginEdit" 
+                      CanUserSortColumns="False"
+                      CanUserReorderColumns="False"
+                      CanUserResizeRows="True"
+                      Background="White"
+                      AutoGenerateColumns="False"
+                      Margin="0,5">
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Style.Triggers>
+                            <Trigger Property="DataGridCell.IsSelected" Value="True">
+                                <Setter Property="BorderBrush">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="Transparent"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource
+                                   {x:Static SystemColors.ControlTextBrushKey}}"/>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="Transparent"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="IsEditing" Value="True" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Width="2*" />
+                    <DataGridComboBoxColumn Width="*" Header="Axis Position" 
+                                            ItemsSource="{Binding Source={StaticResource ChartingPosition}}" 
+                                            SelectedItemBinding="{Binding FluidType}" />
+                    <DataGridTemplateColumn Header="Action" Width="0.5*"></DataGridTemplateColumn>
+            </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="6" Grid.ColumnSpan="2"
+                        HorizontalAlignment="Right">
+
+                <Button Style="{StaticResource SaveButtonStyle}"
+                        Content="Apply"
+                        Width="110"
+                        Margin="3"
+                />
+
+                <Button Content="Cancel"
+                        BorderThickness="0"
+                        HorizontalAlignment="Right"
+                        Width="110"
+                        Margin="3"
+                />
+        </StackPanel>
+        </Grid>
+</Window>

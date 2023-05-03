@@ -1,0 +1,251 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\CreateModelWindow\Events\**" />
+    <Compile Remove="Features\ProductionPredictionTabWindow\NewFolder1\**" />
+    <Compile Remove="Features\ProductionPredictionTabWindow\NewFolder2\**" />
+    <EmbeddedResource Remove="Features\CreateModelWindow\Events\**" />
+    <EmbeddedResource Remove="Features\ProductionPredictionTabWindow\NewFolder1\**" />
+    <EmbeddedResource Remove="Features\ProductionPredictionTabWindow\NewFolder2\**" />
+    <None Remove="Features\CreateModelWindow\Events\**" />
+    <None Remove="Features\ProductionPredictionTabWindow\NewFolder1\**" />
+    <None Remove="Features\ProductionPredictionTabWindow\NewFolder2\**" />
+    <Page Remove="Features\CreateModelWindow\Events\**" />
+    <Page Remove="Features\ProductionPredictionTabWindow\NewFolder1\**" />
+    <Page Remove="Features\ProductionPredictionTabWindow\NewFolder2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ApplicationLayout\Icons\Add.png" />
+    <Compile Remove="Features\Transmissibility\Transmissibility.xaml.cs" />
+    <Compile Remove="Services\Storage\FileStorage\XmlModels\MaterialBalance\HistoryMatchingVariables.cs" />
+    <Compile Remove="Services\Transformations\HistoryMatchingVariablesProfile.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ApplicationLayout\Icons\AreaPlot.png" />
+    <None Remove="ApplicationLayout\Icons\axis.png" />
+    <None Remove="ApplicationLayout\Icons\BarChart.png" />
+    <None Remove="ApplicationLayout\Icons\BoxSearch.png" />
+    <None Remove="ApplicationLayout\Icons\Calculator.png" />
+    <None Remove="ApplicationLayout\Icons\Callout.png" />
+    <None Remove="ApplicationLayout\Icons\Clipboard.png" />
+    <None Remove="ApplicationLayout\Icons\CodeEditor.png" />
+    <None Remove="ApplicationLayout\Icons\Cog.png" />
+    <None Remove="ApplicationLayout\Icons\CommentLines16.png" />
+    <None Remove="ApplicationLayout\Icons\Configure.png" />
+    <None Remove="ApplicationLayout\Icons\ConfigureSeries.png" />
+    <None Remove="ApplicationLayout\Icons\Dashboard.png" />
+    <None Remove="ApplicationLayout\Icons\Database.png" />
+    <None Remove="ApplicationLayout\Icons\DocumentOutline16.png" />
+    <None Remove="ApplicationLayout\Icons\Download.png" />
+    <None Remove="ApplicationLayout\Icons\EditPencil.png" />
+    <None Remove="ApplicationLayout\Icons\EnergyPlot.jpeg" />
+    <None Remove="ApplicationLayout\Icons\Eraser.png" />
+    <None Remove="ApplicationLayout\Icons\Error.png" />
+    <None Remove="ApplicationLayout\Icons\ErrorList16.png" />
+    <None Remove="ApplicationLayout\Icons\ExcelImport.png" />
+    <None Remove="ApplicationLayout\Icons\ExcelTemplate.png" />
+    <None Remove="ApplicationLayout\Icons\Input.png" />
+    <None Remove="ApplicationLayout\Icons\Line.png" />
+    <None Remove="ApplicationLayout\Icons\LinePlot.png" />
+    <None Remove="ApplicationLayout\Icons\Network.png" />
+    <None Remove="ApplicationLayout\Icons\New.png" />
+    <None Remove="ApplicationLayout\Icons\NewTab.png" />
+    <None Remove="ApplicationLayout\Icons\Oil.png" />
+    <None Remove="ApplicationLayout\Icons\PointSelect.png" />
+    <None Remove="ApplicationLayout\Icons\Run.png" />
+    <None Remove="ApplicationLayout\Icons\Save.png" />
+    <None Remove="ApplicationLayout\Icons\Trash16.png" />
+    <None Remove="ApplicationLayout\Icons\UncommentLines16.png" />
+    <None Remove="ApplicationLayout\Icons\Upload.png" />
+    <None Remove="Features\PythonScripting\ScriptingEngine\SmbsApi\startup.py" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Features\PythonScripting\ScriptingEngine\SmbsApi\startup.py" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ApplicationLayout\Icons\Add.png" />
+    <Resource Include="ApplicationLayout\Icons\axis.png" />
+    <Resource Include="ApplicationLayout\Icons\BarChart.png" />
+    <Resource Include="ApplicationLayout\Icons\Callout.png" />
+    <Resource Include="ApplicationLayout\Icons\CodeEditor.png" />
+    <Resource Include="ApplicationLayout\Icons\CommentLines16.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ApplicationLayout\Icons\ConfigureSeries.png" />
+    <Resource Include="ApplicationLayout\Icons\Dashboard.png" />
+    <Resource Include="ApplicationLayout\Icons\DocumentOutline16.png">
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ApplicationLayout\Icons\EnergyPlot.jpeg" />
+    <Resource Include="ApplicationLayout\Icons\Eraser.png" />
+    <Resource Include="ApplicationLayout\Icons\ErrorList16.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ApplicationLayout\Icons\ExcelTemplate.png" />
+    <Resource Include="ApplicationLayout\Icons\Line.png" />
+    <Resource Include="ApplicationLayout\Icons\LinePlot.png" />
+    <Resource Include="ApplicationLayout\Icons\NewTab.png" />
+    <Resource Include="ApplicationLayout\Icons\Save.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ActiproSoftware.Controls.WPF" Version="22.1.2" />
+    <PackageReference Include="ActiproSoftware.Controls.WPF.DataGrid.Contrib" Version="22.1.2" />
+    <PackageReference Include="ActiproSoftware.Controls.WPF.Shared" Version="22.1.2" />
+    <PackageReference Include="ActiproSoftware.Controls.WPF.SyntaxEditor.Addons.Python" Version="22.1.2" />
+    <PackageReference Include="ActiproSoftware.Controls.WPF.SyntaxEditor.Addons.XML" Version="22.1.2" />
+    <Page Remove="Features\Transmissibility\Transmissibility.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="EPPlus" Version="6.0.4" />
+    <PackageReference Include="NPOI" Version="2.5.6" />
+    <PackageReference Include="Prism.Unity" Version="8.1.97" />
+    <PackageReference Include="pythonnet.master" Version="3.0.0" />
+    <PackageReference Include="ReactiveProperty" Version="8.1.2" />
+    <PackageReference Include="ScottPlot.WPF" Version="4.1.52" />
+    <PackageReference Include="ToastNotifications.Messages.Net5" Version="3.0.1" />
+    <PackageReference Include="ToastNotifications.Net5" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ApplicationLayout\Icons\AreaPlot.png" />
+    <Resource Include="ApplicationLayout\Icons\BoxSearch.png" />
+    <Resource Include="ApplicationLayout\Icons\Calculator.png" />
+    <Resource Include="ApplicationLayout\Icons\Clipboard.png" />
+    <Resource Include="ApplicationLayout\Icons\Cog.png" />
+    <Resource Include="ApplicationLayout\Icons\Configure.png" />
+    <Resource Include="ApplicationLayout\Icons\Database.png" />
+    <Resource Include="ApplicationLayout\Icons\Download.png" />
+    <Resource Include="ApplicationLayout\Icons\EditPencil.png" />
+    <Resource Include="ApplicationLayout\Icons\Error.png" />
+    <Resource Include="ApplicationLayout\Icons\ExcelImport.png" />
+    <Resource Include="ApplicationLayout\Icons\Input.png" />
+    <Resource Include="ApplicationLayout\Icons\Network.png" />
+    <Resource Include="ApplicationLayout\Icons\New.png" />
+    <Resource Include="ApplicationLayout\Icons\Oil.png" />
+    <Resource Include="ApplicationLayout\Icons\PointSelect.png" />
+    <Resource Include="ApplicationLayout\Icons\Run.png" />
+    <Resource Include="ApplicationLayout\Icons\Trash16.png" />
+    <Resource Include="ApplicationLayout\Icons\UncommentLines16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ApplicationLayout\Icons\Upload.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ApplicationLayout\RibbonTabs\ModellingTab\ModellingTabView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Features\DashboardTabWindow\CartesianPlots\ConfigureAxes\ConfigureAxesWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ApplicationLayout\LeftPane\DashboardExplorer\DashboardExplorerView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="ApplicationLayout\RibbonTabs\ModellingTab\ModellingTabView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ApplicationLayout\RibbonTabs\AnalyticsTab\AnalyticsTab.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="ApplicationLayout\Themes\Button\Styles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ApplicationLayout\Themes\Combobox\Styles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ApplicationLayout\Themes\TextBox\Styles.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Features\DashboardTabWindow\CartesianPlots\ConfigureAxes\ConfigureAxesWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\HistoryMatchingTabWindow\AllPlots\AllPlotsTabView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Features\HistoryMatchingTabWindow\EnergyPlot\EnergyPlotTabView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\HistoryMatchingTabWindow\GraphicalMethod\GraphicalMethodTabView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Features\PvtMatchingTabWindow\MatchedParametersTab\AllMatchedParametersDialog\AllMatchedParametersView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Features\PythonScripting\PyScriptEditor.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Features\TankInputTabWindow\InputDataTab\InputDataTabView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Features\TankInputTabWindow\TankInputTabWindowView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Features\TankInputTabWindow\WaterInfluxTab\WaterInfluxTabView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ApplicationLayout\LeftPane\ScriptsExplorer\" />
+    <Folder Include="Features\DashboardTabWindow\CartesianPlots\AddAnnotation\" />
+    <Folder Include="Features\DashboardTabWindow\BarPlots\" />
+    <Folder Include="Features\DashboardTabWindow\Commands\" />
+    <Folder Include="Features\HistoryMatchingTabWindow\PressureSimulationTab\Models\" />
+    <Folder Include="Features\PythonScripting\ScriptingEnvironmentConfigurationWindow\" />
+    <Folder Include="Services\Calculation\Transformations\" />
+    <Folder Include="Shared\UIModels\Scripting\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CypherCrescent.Units.Controls\CypherCrescent.Units.Controls.csproj" />
+    <ProjectReference Include="..\CypherCrescent.Units\CypherCrescent.Units.csproj" />
+  </ItemGroup>
+
+  
+
+  <ItemGroup>
+    <Reference Include="ChartUIControls">
+      <HintPath>Lib\ChartUIControls.dll</HintPath>
+    </Reference>
+    <Reference Include="MathematicsLibrary">
+      <HintPath>Lib\MathematicsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="MathematicsLibrary2021">
+      <HintPath>Lib\MathematicsLibrary2021.dll</HintPath>
+    </Reference>
+    <Reference Include="PVTLibrary2.0">
+      <HintPath>Lib\PVTLibrary2.0.dll</HintPath>
+    </Reference>
+    <Reference Include="SMBS.Engine">
+      <HintPath>Lib\SMBS.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="SMBS.Shared">
+      <HintPath>Lib\SMBS.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

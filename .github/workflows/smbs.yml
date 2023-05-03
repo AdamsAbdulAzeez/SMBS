@@ -33,7 +33,7 @@ jobs:
       - name: Publish
         run: dotnet publish -c Release --self-contained -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
         env:
-          PROJECT-PATH: 'D:/a/SMBS/SMBS/WindowsClient/WindowsClient.csproj'
+          PROJECT-PATH: 'WindowsClient/WindowsClient/WindowsClient.csproj'
 
       - name: Create a Release
         uses: actions/create-release@v1

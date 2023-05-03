@@ -42,10 +42,8 @@ jobs:
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
-        release_name: Release ${{ github.sha }}
-        body: Automated release created by GitHub Actions.
-        draft: false
+        tag_name: v1.0.0
+        release_name: Release v1.0.0
 
     - name: Upload to release
       uses: csexton/release-asset-action@v2

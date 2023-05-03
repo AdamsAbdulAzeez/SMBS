@@ -55,7 +55,7 @@ class Rectangle {
     public Length Height { get;set; }
     public Dictionary<int, DataPoints> Points {get;set;}
     public event Action OnSizeChanged;
-    // The Rectangle table schema definition represents the storage datatypes as double 
+    // The Rectangle table schema definition represents the storage datatypes as double
     // (as required) by the column type of the database (in the case of SQL). But the business object defines the types as `Length`.
     // This means the business object is unit aware, whereas the persistent object is unit dumb.
 }

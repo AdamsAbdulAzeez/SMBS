@@ -1,11 +1,11 @@
-name: PR action
+name: PR opened action"
 
 on:
   pull_request_review:
     types: [submitted]
 
 env:
-  PROJECT_PATH: WindowsClient/WindowsClient.csproj
+  PROJECT-PATH: WindowsClient/WindowsClient.csproj
 
 permissions:
   contents: write
@@ -19,7 +19,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
-    - name: Install .NET Core
+    - name: Install .Net core
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '5.0.x'
@@ -34,16 +34,16 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
 
     - name: Publish 
-      run: dotnet publish ${{env.PROJECT_PATH}} -c Release -r win-x64 --self-contained false
+      run: dotnet publish ${{env.PROJECT_PATH}} -c Release --self-contained -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
 
     - name: Create a Release
-      id: create_release
       uses: actions/create-release@v1
+      id: create_release
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v1.0.0
-        release_name: Release v1.0.0
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
 
     - name: Upload to release
       uses: csexton/release-asset-action@v2

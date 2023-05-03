@@ -5,7 +5,7 @@ on:
     types: [submitted]
 
 env:
-  PROJECT-PATH: WindowsClient/WindowsClient.csproj
+  PROJECT-PATH: SMBS/WindowsClient/WindowsClient.csproj
 
 permissions:
   contents: write

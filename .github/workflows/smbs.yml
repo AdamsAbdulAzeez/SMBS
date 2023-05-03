@@ -1,53 +1,67 @@
-name: PR opened action"
+name: Build and Deploy Windows Client
 
 on:
   pull_request_review:
     types: [submitted]
+    # Only run when a review is submitted, not when it's dismissed
+    # to avoid unnecessary builds
+    condition: ${{ github.event.review.state == 'approved' }}
 
 env:
-  PROJECT-PATH: WindowsClient/WindowsClient.csproj
-
-permissions:
-  contents: write
-  pull-requests: write
+  PROJECT_PATH: WindowsClient/WindowsClient.csproj
 
 jobs:
-  deploy:
-    if: github.event.review.state == 'approved'
+  build:
     runs-on: windows-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      
-    - name: Install .Net core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '5.0.x'
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Restore dependencies
-      run: dotnet restore ${{env.PROJECT_PATH}}
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '5.0.x'
 
-    - name: Build
-      run:  dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore 
+      - name: Restore dependencies
+        run: dotnet restore ${{env.PROJECT_PATH}}
+        # Ensure the WindowsClient folder is used as the working directory
+        working-directory: ./WindowsClient
 
-    - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
+      - name: Build project
+        run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
+        # Ensure the WindowsClient folder is used as the working directory
+        working-directory: ./WindowsClient
+        # Show the full output of the build command
+        env:
+          DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+          DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
-    - name: Publish 
-      run: dotnet publish ${{env.PROJECT_PATH}} -c Release --self-contained -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+      - name: Run tests
+        run: dotnet test --no-restore --verbosity normal
+        # Ensure the WindowsClient folder is used as the working directory
+        working-directory: ./WindowsClient
+        # Show the full output of the test command
+        env:
+          DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+          DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
-    - name: Create a Release
-      uses: actions/create-release@v1
-      id: create_release
-      env: 
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
+      - name: Publish project
+        run: dotnet publish ${{env.PROJECT_PATH}} -c Release --self-contained -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+        # Ensure the WindowsClient folder is used as the working directory
+        working-directory: ./WindowsClient
 
-    - name: Upload to release
-      uses: csexton/release-asset-action@v2
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        pattern: WindowsClient/bin/Release/net5.0-windows/win-x64/publish/*.exe
-        release-url: ${{ steps.create_release.outputs.upload_url }}
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        id: create_release
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+
+      - name: Upload Release Asset
+        uses: csexton/release-asset-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: WindowsClient/bin/Release/net5.0-windows/win-x64/publish/*.exe
+          release-url: ${{ steps.create_release.outputs.upload_url }}

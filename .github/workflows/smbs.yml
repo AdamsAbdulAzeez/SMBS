@@ -1,11 +1,11 @@
-name: PR opened action"
+name: PR opened action
 
 on:
   pull_request_review:
     types: [submitted]
 
 env:
-  PROJECT-PATH: WindowsClient/WindowsClient.csproj
+  PROJECT_PATH: WindowsClient/WindowsClient.csproj
 
 permissions:
   contents: write
@@ -13,14 +13,14 @@ permissions:
 
 jobs:
   deploy:
-    if: github.event.review.state == 'approved'
+    #if: github.event.review.state == 'approved'
     runs-on: windows-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
       
-    - name: Install .Net core
-      uses: actions/setup-dotnet@v3
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '5.0.x'
 
@@ -34,7 +34,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
 
     - name: Publish 
-      run: dotnet publish ${{env.PROJECT_PATH}} -c Release --self-contained -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
+      run: dotnet publish ${{env.PROJECT_PATH}} -c Release -r win-x64 --self-contained false
 
     - name: Create a Release
       uses: actions/create-release@v1

@@ -1,4 +1,4 @@
-name: PR opened action
+name: PR action
 
 on:
   pull_request_review:

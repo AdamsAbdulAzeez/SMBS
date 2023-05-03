@@ -37,13 +37,15 @@ jobs:
       run: dotnet publish ${{env.PROJECT_PATH}} -c Release -r win-x64 --self-contained false
 
     - name: Create a Release
-      uses: actions/create-release@v1
       id: create_release
+      uses: actions/create-release@v1
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
+        tag_name: ${{ github.sha }}
+        release_name: Release ${{ github.sha }}
+        body: Automated release created by GitHub Actions.
+        draft: false
 
     - name: Upload to release
       uses: csexton/release-asset-action@v2

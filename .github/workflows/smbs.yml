@@ -1,4 +1,4 @@
-name: PR opened action
+name: PR action
 
 on:
   pull_request_review:
@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   deploy:
-    #if: github.event.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     runs-on: windows-latest
     steps:
     - name: Checkout
@@ -37,13 +37,13 @@ jobs:
       run: dotnet publish ${{env.PROJECT_PATH}} -c Release -r win-x64 --self-contained false
 
     - name: Create a Release
-      uses: actions/create-release@v1
       id: create_release
+      uses: actions/create-release@v1
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
+        tag_name: v1.0.0
+        release_name: Release v1.0.0
 
     - name: Upload to release
       uses: csexton/release-asset-action@v2

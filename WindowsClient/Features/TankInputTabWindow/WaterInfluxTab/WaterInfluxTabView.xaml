@@ -2,7 +2,6 @@
     x:Class="WindowsClient.Features.TankInputTabWindow.WaterInfluxTab.WaterInfluxTabView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:CypherCrescent.Units.Controls;assembly=CypherCrescent.Units.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:enumBindingService="clr-namespace:WindowsClient.Shared.EnumBinding"
     xmlns:enumSource="clr-namespace:WindowsClient.Shared.UIModels.MaterialBalance"

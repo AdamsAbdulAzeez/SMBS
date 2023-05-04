@@ -222,7 +222,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CypherCrescent.Units.Controls\CypherCrescent.Units.Controls.csproj" />
     <ProjectReference Include="..\CypherCrescent.Units\CypherCrescent.Units.csproj" />
   </ItemGroup>
 

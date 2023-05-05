@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   deploy:
-    #if: github.event.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     runs-on: windows-latest
     steps:
     - name: Checkout
@@ -42,8 +42,8 @@ jobs:
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
+        tag_name: ${{ github.sha }}
+        release_name: ${{ github.sha }}
 
     - name: Upload to release
       uses: csexton/release-asset-action@v2

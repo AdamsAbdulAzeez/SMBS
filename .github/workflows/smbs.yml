@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   deploy:
-    if: github.event.review.state == 'approved'
+    if: github.event.review.state == 'Approved'
     runs-on: windows-latest
     steps:
     - name: Checkout

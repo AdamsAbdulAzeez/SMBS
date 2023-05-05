@@ -42,8 +42,8 @@ jobs:
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.refs }}
-        release_name: ${{ github.refs }}
+        tag_name: v1.0.0
+        release_name: v1.0.0
 
     - name: Upload to release
       uses: csexton/release-asset-action@v2
